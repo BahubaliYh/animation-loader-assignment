@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      main {
+        width: 50%;
+        margin: auto;
+      }
+
+      .mainBox {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        margin: auto;
+      }
+
+      .mainBox div {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        position: absolute;
+      }
+
+      .top-left-orrange {
+        background-color: orangered;
+        animation: mymove1 3s infinite;
+        z-index: 4;
+      }
+
+      @keyframes mymove1 {
+        0% {
+          width: 50px;
+        }
+
+        50% {
+          width: 100%;
+          background-color: yellow;
+        }
+
+        100% {
+          width: 50px;
+        }
+      }
+
+      .top-right-yellow {
+        background-color: yellow;
+        right: 0;
+        top: 0;
+        animation: mymove2 3s infinite;
+        z-index: 3;
+      }
+
+
+      @keyframes mymove2 {
+        0% {
+          height: 50px;
+        }
+
+        50% {
+          height: 100%;
+          background-color: blue;
+        }
+
+        100% {
+          width: 50px;
+        }
+      }
+
+      .bottom-left-green {
+        background-color: green;
+        bottom: 0;
+        left: 0;
+        animation: mymove3 3s infinite;
+        z-index: 1;
+      }
+
+      @keyframes mymove3 {
+        0% {
+          height: 50px;
+        }
+
+        50% {
+          height: 100%;
+          background-color: orangered;
+        }
+
+        100% {
+          height: 50px;
+        }
+      }
+
+      .bottom-right-blue {
+        background-color: blue;
+        transition: width 2s;
+        bottom: 0;
+        right: 0;
+        animation: mymove4 3s infinite;
+        z-index: 2;
+      }
+
+      @keyframes mymove4 {
+        0% {
+          width: 50px;
+        }
+
+        50% {
+          width: 100%;
+          background-color: green;
+        }
+
+        100% {
+          width: 50px;
+        }
+      }
+
+      .movingBox {
+        animation-play-state: paused;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div class="mainBox">
+        <div class="top-left-orrange movingBox"></div>
+        <div class="top-right-yellow movingBox"></div>
+        <div class="bottom-left-green movingBox"></div>
+        <div class="bottom-right-blue movingBox"></div>
+      </div>
+      <div class="buttons">
+        <button id="btn-start">START</button>
+        <button id="btn-stop">STOP</button>
+      </div>
+    </main>
+
+
+    <script>
+
+      const start = document.getElementById("btn-start")
+      const stop = document.getElementById("btn-stop")
+
+      start.addEventListener("click", () => {
+        console.log("called")
+        const movingBox = document.getElementsByClassName("movingBox")
+        for (let i = 0, len = movingBox.length; i < len; i++)
+        {
+          movingBox[ i ].style.animationPlayState = "running";
+        }
+      })
+
+      stop.addEventListener("click", () => {
+        console.log("called")
+        const movingBox = document.getElementsByClassName("movingBox")
+        for (let i = 0, len = movingBox.length; i < len; i++)
+        {
+          movingBox[ i ].style.animationPlayState = "paused";
+          movingBox[ i ].style.width = "50px";
+          movingBox[ i ].style.height = "50px";
+        }
+      })
+
+    </script>
+  </body>
+
+</html>
